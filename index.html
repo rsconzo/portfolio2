@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Creative Services — Lake Wylie & Clover, SC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0c0b09;
+      --bg2:       #131210;
+      --bg3:       #1a1815;
+      --gold:      #c9a84c;
+      --gold-dim:  #8a6e2e;
+      --cream:     #f0e8d5;
+      --cream-dim: #b0a48a;
+      --border:    rgba(201,168,76,0.18);
+      --sans:      'Outfit', sans-serif;
+      --serif:     'Cormorant Garamond', serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--cream);
+      font-family: var(--sans);
+      font-weight: 300;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── Grain overlay ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.04;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.4rem 4rem;
+      background: linear-gradient(to bottom, rgba(12,11,9,0.95), transparent);
+      backdrop-filter: blur(4px);
+    }
+
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+      text-decoration: none;
+      transition: color 0.25s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 0 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 70% at 70% 50%, rgba(201,168,76,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-text { padding-top: 4rem; }
+
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.2s forwards;
+    }
+
+    .hero-headline {
+      font-family: var(--serif);
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      margin-bottom: 1.8rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.4s forwards;
+    }
+
+    .hero-headline em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--cream-dim);
+      max-width: 440px;
+      margin-bottom: 2.8rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.6s forwards;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1.2rem;
+      align-items: center;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.8s forwards;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 0.9rem 2.2rem;
+      background: var(--gold);
+      color: var(--bg);
+      font-family: var(--sans);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.25s, transform 0.2s;
+    }
+
+    .btn-primary:hover {
+      background: #dfc05e;
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: color 0.25s;
+    }
+
+    .btn-ghost:hover { color: var(--cream); }
+
+    .btn-ghost::after {
+      content: '↓';
+      font-size: 1rem;
+    }
+
+    /* Hero visual side */
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      position: relative;
+      opacity: 0;
+      animation: fadeIn 1.2s 0.5s forwards;
+    }
+
+    .hero-frame {
+      width: 340px;
+      height: 480px;
+      position: relative;
+    }
+
+    .frame-card {
+      position: absolute;
+      border: 1px solid var(--border);
+      background: var(--bg3);
+      border-radius: 2px;
+    }
+
+    .frame-card.main {
+      inset: 0;
+      background: linear-gradient(135deg, #1e1b16 0%, #0f0e0c 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 2rem;
+      overflow: hidden;
+    }
+
+    .frame-card.main::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, rgba(201,168,76,0.07) 0%, transparent 50%);
+    }
+
+    .frame-card.accent1 {
+      width: 160px;
+      height: 200px;
+      bottom: -24px;
+      right: -28px;
+      background: linear-gradient(135deg, #1a1714, #0e0d0b);
+      border-color: var(--border);
+      z-index: -1;
+    }
+
+    .frame-card.accent2 {
+      width: 100px;
+      height: 120px;
+      top: -18px;
+      left: -22px;
+      background: linear-gradient(135deg, #1c1a15, #100f0d);
+      border-color: rgba(201,168,76,0.08);
+      z-index: -1;
+    }
+
+    .frame-service-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.4rem;
+    }
+
+    .frame-service-name {
+      font-family: var(--serif);
+      font-size: 1.8rem;
+      font-weight: 400;
+      line-height: 1.2;
+      color: var(--cream);
+    }
+
+    /* Animated camera shutter icon */
+    .camera-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -60%);
+      width: 80px;
+      height: 80px;
+      opacity: 0.15;
+    }
+
+    /* ── SECTION SHARED ── */
+    section { padding: 7rem 4rem; }
+
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      font-weight: 300;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-title em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .section-body {
+      font-size: 1rem;
+      color: var(--cream-dim);
+      max-width: 560px;
+      line-height: 1.8;
+    }
+
+    /* ── SERVICES ── */
+    #services {
+      background: var(--bg2);
+      position: relative;
+    }
+
+    #services::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+    }
+
+    .services-intro {
+      max-width: 680px;
+      margin-bottom: 5rem;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px;
+      background: var(--border);
+    }
+
+    .service-card {
+      background: var(--bg2);
+      padding: 3rem 2.5rem 3.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.35s;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+
+    .service-card:hover { background: var(--bg3); }
+    .service-card:hover::before { transform: scaleX(1); }
+
+    .service-num {
+      font-family: var(--serif);
+      font-size: 3.5rem;
+      font-weight: 300;
+      color: rgba(201,168,76,0.12);
+      line-height: 1;
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .service-icon {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 1.5rem;
+      color: var(--gold);
+    }
+
+    .service-name {
+      font-family: var(--serif);
+      font-size: 1.7rem;
+      font-weight: 400;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .service-desc {
+      font-size: 0.9rem;
+      color: var(--cream-dim);
+      line-height: 1.75;
+      margin-bottom: 1.8rem;
+    }
+
+    .service-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .service-list li {
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      color: var(--cream-dim);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .service-list li::before {
+      content: '';
+      width: 14px;
+      height: 1px;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+
+    /* ── WORK ── */
+    #work { background: var(--bg); }
+
+    .work-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 4rem;
+    }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: auto;
+      gap: 1.5px;
+      background: var(--border);
+    }
+
+    .work-item {
+      background: var(--bg3);
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .work-item:nth-child(1) { grid-column: span 7; }
+    .work-item:nth-child(2) { grid-column: span 5; }
+    .work-item:nth-child(3) { grid-column: span 4; }
+    .work-item:nth-child(4) { grid-column: span 8; }
+
+    .work-thumb {
+      width: 100%;
+      aspect-ratio: 4/3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .work-item:nth-child(1) .work-thumb { background: linear-gradient(135deg, #1a1714 0%, #0e1012 50%, #111410 100%); }
+    .work-item:nth-child(2) .work-thumb { background: linear-gradient(135deg, #10140f 0%, #191612 100%); }
+    .work-item:nth-child(3) .work-thumb { background: linear-gradient(135deg, #0f1214 0%, #131007 100%); }
+    .work-item:nth-child(4) .work-thumb { background: linear-gradient(135deg, #141110 0%, #0d1210 100%); }
+
+    .work-thumb-label {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 300;
+      font-style: italic;
+      color: rgba(240,232,213,0.25);
+      letter-spacing: 0.04em;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .work-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(12,11,9,0.8);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1.8rem;
+      opacity: 0;
+      transition: opacity 0.35s;
+    }
+
+    .work-item:hover .work-overlay { opacity: 1; }
+
+    .work-overlay-tag {
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.4rem;
+    }
+
+    .work-overlay-title {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--cream);
+    }
+
+    .work-caption {
+      padding: 1.2rem 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .work-caption-tag {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      margin-bottom: 0.2rem;
+    }
+
+    .work-caption-name {
+      font-size: 0.88rem;
+      color: var(--cream-dim);
+    }
+
+    /* ── ABOUT ── */
+    #about {
+      background: var(--bg2);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+      position: relative;
+    }
+
+    #about::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+    }
+
+    .about-image-wrap {
+      position: relative;
+    }
+
+    .about-image {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: linear-gradient(160deg, #1c1914 0%, #0d0c0a 100%);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, rgba(201,168,76,0.06) 0%, transparent 60%);
+    }
+
+    .about-image-placeholder {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-style: italic;
+      color: rgba(240,232,213,0.15);
+      text-align: center;
+    }
+
+    .about-badge {
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      width: 120px;
+      height: 120px;
+      background: var(--gold);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--bg);
+      text-align: center;
+    }
+
+    .about-badge-num {
+      font-family: var(--serif);
+      font-size: 2.2rem;
+      font-weight: 500;
+      line-height: 1;
+    }
+
+    .about-badge-text {
+      font-size: 0.6rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .stat-block {
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+    }
+
+    .stat-num {
+      font-family: var(--serif);
+      font-size: 2.4rem;
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      color: var(--cream-dim);
+      margin-top: 0.3rem;
+    }
+
+    /* ── TESTIMONIAL ── */
+    #testimonial {
+      background: var(--bg);
+      text-align: center;
+      padding: 7rem 4rem;
+      position: relative;
+    }
+
+    .testimonial-quote {
+      font-family: var(--serif);
+      font-size: clamp(1.5rem, 3.5vw, 2.6rem);
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.4;
+      max-width: 800px;
+      margin: 0 auto 2rem;
+      color: var(--cream);
+    }
+
+    .testimonial-author {
+      font-size: 0.75rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .quote-mark {
+      font-family: var(--serif);
+      font-size: 6rem;
+      line-height: 0.5;
+      color: rgba(201,168,76,0.15);
+      display: block;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ── PRICING TEASER ── */
+    #pricing {
+      background: var(--bg2);
+      position: relative;
+    }
+
+    #pricing::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px;
+      background: var(--border);
+      margin-top: 4rem;
+    }
+
+    .pricing-card {
+      background: var(--bg2);
+      padding: 2.8rem 2.5rem;
+      position: relative;
+      transition: background 0.3s;
+    }
+
+    .pricing-card.featured {
+      background: var(--bg3);
+    }
+
+    .pricing-card.featured::before {
+      content: 'Most Popular';
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: rgba(201,168,76,0.1);
+      padding: 0.3rem 0.7rem;
+    }
+
+    .pricing-type {
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .pricing-name {
+      font-family: var(--serif);
+      font-size: 1.8rem;
+      font-weight: 400;
+      margin-bottom: 0.8rem;
+    }
+
+    .pricing-price {
+      font-family: var(--serif);
+      font-size: 2.8rem;
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+
+    .pricing-period {
+      font-size: 0.75rem;
+      color: var(--cream-dim);
+      letter-spacing: 0.06em;
+      margin-bottom: 2rem;
+    }
+
+    .pricing-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      margin-bottom: 2.2rem;
+    }
+
+    .pricing-features li {
+      font-size: 0.85rem;
+      color: var(--cream-dim);
+      display: flex;
+      gap: 0.7rem;
+      align-items: flex-start;
+    }
+
+    .pricing-features li::before {
+      content: '✓';
+      color: var(--gold);
+      font-size: 0.75rem;
+      flex-shrink: 0;
+      margin-top: 0.15rem;
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: var(--bg);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+      position: relative;
+    }
+
+    #contact::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+    }
+
+    .contact-form { display: flex; flex-direction: column; gap: 1.2rem; }
+
+    .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+
+    .form-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .form-input, .form-select, .form-textarea {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      color: var(--cream);
+      font-family: var(--sans);
+      font-size: 0.92rem;
+      padding: 0.85rem 1.1rem;
+      outline: none;
+      transition: border-color 0.25s;
+      appearance: none;
+      border-radius: 0;
+    }
+
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      border-color: var(--gold);
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 130px;
+      line-height: 1.6;
+    }
+
+    .form-input::placeholder,
+    .form-textarea::placeholder {
+      color: rgba(176,164,138,0.35);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 2.5rem 4rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--bg);
+    }
+
+    .footer-name {
+      font-family: var(--serif);
+      font-size: 1rem;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+    }
+
+    .footer-loc {
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+      text-decoration: none;
+      transition: color 0.25s;
+    }
+
+    .footer-links a:hover { color: var(--gold); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 1.8rem; }
+      .nav-links { display: none; }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 8rem 1.8rem 4rem;
+        min-height: auto;
+      }
+
+      .hero-visual { display: none; }
+
+      section { padding: 5rem 1.8rem; }
+
+      .services-grid,
+      .pricing-grid { grid-template-columns: 1fr; }
+
+      .work-item:nth-child(n) { grid-column: span 12; }
+
+      #about,
+      #contact { grid-template-columns: 1fr; gap: 3rem; }
+
+      .about-image { max-width: 340px; }
+
+      .work-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+
+      footer {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+        padding: 2rem 1.8rem;
+      }
+    }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 0; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="#">YourName</a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-text">
+      <p class="hero-eyebrow">Lake Wylie &amp; Clover, SC</p>
+      <h1 class="hero-headline">
+        I make local<br>
+        businesses look<br>
+        <em>great online.</em>
+      </h1>
+      <p class="hero-sub">
+        Websites, photography, and social media — everything a local business needs to build a real presence, handled by one person who actually cares.
+      </p>
+      <div class="hero-cta">
+        <a class="btn-primary" href="#contact">Let's Work Together</a>
+        <a class="btn-ghost" href="#work">See My Work</a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-frame">
+        <div class="frame-card accent2"></div>
+        <div class="frame-card main">
+          <svg class="camera-icon" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="8" y="24" width="64" height="44" rx="4" stroke="currentColor" stroke-width="2"/>
+            <circle cx="40" cy="46" r="14" stroke="currentColor" stroke-width="2"/>
+            <circle cx="40" cy="46" r="8" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M24 24L28 14H52L56 24" stroke="currentColor" stroke-width="2"/>
+            <circle cx="62" cy="32" r="3" fill="currentColor" opacity="0.6"/>
+          </svg>
+          <p class="frame-service-label">Available for projects</p>
+          <p class="frame-service-name">Web · Photo<br>Social Media</p>
+        </div>
+        <div class="frame-card accent1"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="services-intro reveal">
+      <p class="section-label">What I Do</p>
+      <h2 class="section-title">Three services.<br><em>One person. Zero headaches.</em></h2>
+      <p class="section-body">Most local businesses need the same three things done well — a website that works, photos that look professional, and a social presence that stays active. I handle all of it.</p>
+    </div>
+
+    <div class="services-grid">
+
+      <div class="service-card reveal">
+        <span class="service-num">01</span>
+        <svg class="service-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="4" y="8" width="32" height="22" rx="2" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M14 30L12 36H28L26 30" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M9 14H31" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M9 19H22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M9 24H18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <h3 class="service-name">Web Design &amp; Development</h3>
+        <p class="service-desc">Custom websites built from scratch — fast, mobile-friendly, and designed to actually convert visitors into customers.</p>
+        <ul class="service-list">
+          <li>Custom design, not templates</li>
+          <li>Mobile-first and fast loading</li>
+          <li>Contact forms and booking integrations</li>
+          <li>Google Maps &amp; SEO basics included</li>
+          <li>Easy for you to update yourself</li>
+        </ul>
+      </div>
+
+      <div class="service-card reveal">
+        <span class="service-num">02</span>
+        <svg class="service-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="4" y="10" width="32" height="24" rx="3" stroke="currentColor" stroke-width="1.5"/>
+          <circle cx="20" cy="22" r="7" stroke="currentColor" stroke-width="1.5"/>
+          <circle cx="20" cy="22" r="3" stroke="currentColor" stroke-width="1.2"/>
+          <path d="M16 10L14 6H26L24 10" stroke="currentColor" stroke-width="1.5"/>
+          <circle cx="30" cy="15" r="1.5" fill="currentColor"/>
+        </svg>
+        <h3 class="service-name">Photography</h3>
+        <p class="service-desc">Professional photos of your space, products, team, and brand — shot with a real camera, edited and ready for web and print.</p>
+        <ul class="service-list">
+          <li>Business &amp; storefront photography</li>
+          <li>Product and detail shots</li>
+          <li>Team and headshot sessions</li>
+          <li>Event coverage</li>
+          <li>Fully edited, web-ready delivery</li>
+        </ul>
+      </div>
+
+      <div class="service-card reveal">
+        <span class="service-num">03</span>
+        <svg class="service-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="10" y="4" width="20" height="32" rx="4" stroke="currentColor" stroke-width="1.5"/>
+          <rect x="14" y="10" width="12" height="12" rx="1" stroke="currentColor" stroke-width="1.2"/>
+          <path d="M14 26H26" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+          <path d="M14 29H22" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+          <circle cx="20" cy="34" r="1.2" fill="currentColor"/>
+        </svg>
+        <h3 class="service-name">Social Media Management</h3>
+        <p class="service-desc">I shoot the content, write the captions, and post it consistently — so your feed stays active without you thinking about it.</p>
+        <ul class="service-list">
+          <li>Instagram &amp; Facebook management</li>
+          <li>I shoot fresh content monthly</li>
+          <li>Caption writing and scheduling</li>
+          <li>Story and reel creation</li>
+          <li>Monthly reporting on growth</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section id="work">
+    <div class="work-header">
+      <div>
+        <p class="section-label">Selected Work</p>
+        <h2 class="section-title reveal">Recent <em>projects.</em></h2>
+      </div>
+      <a class="btn-ghost" href="#contact">Start a project →</a>
+    </div>
+
+    <div class="work-grid">
+      <div class="work-item reveal">
+        <div class="work-thumb">
+          <p class="work-thumb-label">Milk Train<br>Website</p>
+          <div class="work-overlay">
+            <p class="work-overlay-tag">Web Design</p>
+            <p class="work-overlay-title">Milk Train<br>Website &amp; Branding</p>
+          </div>
+        </div>
+        <div class="work-caption">
+          <p class="work-caption-tag">Web Design</p>
+          <p class="work-caption-name">Milk Train — Full website build</p>
+        </div>
+      </div>
+
+      <div class="work-item reveal">
+        <div class="work-thumb">
+          <p class="work-thumb-label">Brand<br>Photography</p>
+          <div class="work-overlay">
+            <p class="work-overlay-tag">Photography</p>
+            <p class="work-overlay-title">Brand &amp; Product<br>Photography</p>
+          </div>
+        </div>
+        <div class="work-caption">
+          <p class="work-caption-tag">Photography</p>
+          <p class="work-caption-name">Local Business — Brand shoot</p>
+        </div>
+      </div>
+
+      <div class="work-item reveal">
+        <div class="work-thumb">
+          <p class="work-thumb-label">Social Media<br>Campaign</p>
+          <div class="work-overlay">
+            <p class="work-overlay-tag">Social Media</p>
+            <p class="work-overlay-title">Social Content<br>Campaign</p>
+          </div>
+        </div>
+        <div class="work-caption">
+          <p class="work-caption-tag">Social Media</p>
+          <p class="work-caption-name">Instagram growth campaign</p>
+        </div>
+      </div>
+
+      <div class="work-item reveal">
+        <div class="work-thumb">
+          <p class="work-thumb-label">Storefront<br>Photography</p>
+          <div class="work-overlay">
+            <p class="work-overlay-tag">Photography + Web</p>
+            <p class="work-overlay-title">Full-Service<br>Business Package</p>
+          </div>
+        </div>
+        <div class="work-caption">
+          <p class="work-caption-tag">Photography + Social</p>
+          <p class="work-caption-name">Storefront &amp; content package</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-image-wrap reveal">
+      <div class="about-image">
+        <p class="about-image-placeholder">Your Photo Here</p>
+      </div>
+      <div class="about-badge">
+        <span class="about-badge-num">SC</span>
+        <span class="about-badge-text">Lake Wylie<br>Based</span>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <p class="section-label">About Me</p>
+      <h2 class="section-title">A creative<br>who <em>gets it done.</em></h2>
+      <p class="section-body" style="margin-bottom:1.5rem">
+        I'm a Lake Wylie–based creative who builds websites, shoots photos, and manages social media for local businesses. I started doing this because I love it — and I noticed how many businesses in this area were leaving a ton of opportunity on the table by not having a solid online presence.
+      </p>
+      <p class="section-body" style="margin-bottom:2.5rem">
+        I'm not an agency. You get one person who knows your business, stays consistent, and gives a damn about the outcome. That matters more than a team of strangers.
+      </p>
+
+      <div class="about-stats">
+        <div class="stat-block">
+          <span class="stat-num">5+</span>
+          <p class="stat-label">Years in social media & content creation</p>
+        </div>
+        <div class="stat-block">
+          <span class="stat-num">100%</span>
+          <p class="stat-label">Custom work — no templates, no shortcuts</p>
+        </div>
+        <div class="stat-block">
+          <span class="stat-num">Local</span>
+          <p class="stat-label">I show up in person, not just over email</p>
+        </div>
+        <div class="stat-block">
+          <span class="stat-num">1</span>
+          <p class="stat-label">Person who handles everything start to finish</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIAL -->
+  <section id="testimonial">
+    <div class="reveal">
+      <span class="quote-mark">"</span>
+      <p class="testimonial-quote">
+        Working with [Your Name] was the best decision we made for our business. Our website looks incredible and we finally have a social presence that actually reflects who we are.
+      </p>
+      <p class="testimonial-author">— Happy Client, Local Business Owner</p>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing">
+    <div class="reveal" style="max-width: 560px; margin-bottom: 1rem;">
+      <p class="section-label">Packages &amp; Pricing</p>
+      <h2 class="section-title">Simple pricing,<br><em>real results.</em></h2>
+      <p class="section-body">One-off projects or monthly retainers — pick what fits. Everything is transparent, no surprise fees.</p>
+    </div>
+
+    <div class="pricing-grid">
+
+      <div class="pricing-card reveal">
+        <p class="pricing-type">One-Time</p>
+        <h3 class="pricing-name">Website Build</h3>
+        <p class="pricing-price">$450</p>
+        <p class="pricing-period">One-time project fee</p>
+        <ul class="pricing-features">
+          <li>Custom designed from scratch</li>
+          <li>Mobile-friendly &amp; fast</li>
+          <li>Contact form + Google Maps</li>
+          <li>Basic SEO setup</li>
+          <li>1 round of revisions</li>
+        </ul>
+        <a class="btn-primary" href="#contact">Get Started</a>
+      </div>
+
+      <div class="pricing-card featured reveal">
+        <p class="pricing-type">Monthly Retainer</p>
+        <h3 class="pricing-name">Social + Photo</h3>
+        <p class="pricing-price">$350<span style="font-size:1.4rem">/mo</span></p>
+        <p class="pricing-period">Recurring monthly service</p>
+        <ul class="pricing-features">
+          <li>2–3 posts per week</li>
+          <li>Monthly on-site photo shoot</li>
+          <li>Caption writing &amp; scheduling</li>
+          <li>Story &amp; reel content</li>
+          <li>Monthly growth report</li>
+        </ul>
+        <a class="btn-primary" href="#contact">Get Started</a>
+      </div>
+
+      <div class="pricing-card reveal">
+        <p class="pricing-type">Full Package</p>
+        <h3 class="pricing-name">Everything</h3>
+        <p class="pricing-price">$600<span style="font-size:1.4rem">/mo</span></p>
+        <p class="pricing-period">Website + social + photography</p>
+        <ul class="pricing-features">
+          <li>Website build included</li>
+          <li>Full social media management</li>
+          <li>Monthly photo refresh</li>
+          <li>Priority response time</li>
+          <li>Best value for full presence</li>
+        </ul>
+        <a class="btn-primary" href="#contact">Get Started</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="reveal">
+      <p class="section-label">Get In Touch</p>
+      <h2 class="section-title">Let's build<br>something <em>together.</em></h2>
+      <p class="section-body" style="margin-bottom:2.5rem">
+        Based in Lake Wylie and working with businesses throughout the Clover area. Reach out — I respond within 24 hours.
+      </p>
+      <div style="display:flex; flex-direction:column; gap:1rem;">
+        <div>
+          <p class="form-label" style="margin-bottom:0.3rem">Email</p>
+          <p style="color:var(--cream); font-size:0.95rem">youremail@email.com</p>
+        </div>
+        <div>
+          <p class="form-label" style="margin-bottom:0.3rem">Location</p>
+          <p style="color:var(--cream); font-size:0.95rem">Lake Wylie / Clover, SC</p>
+        </div>
+        <div>
+          <p class="form-label" style="margin-bottom:0.3rem">Instagram</p>
+          <p style="color:var(--cream); font-size:0.95rem">@yourhandle</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form reveal">
+      <div class="form-group">
+        <label class="form-label" for="name">Your Name</label>
+        <input class="form-input" type="text" id="name" placeholder="Jane Smith" />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="business">Business Name</label>
+        <input class="form-input" type="text" id="business" placeholder="Smith's Coffee Shop" />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="email">Email Address</label>
+        <input class="form-input" type="email" id="email" placeholder="jane@yourbusiness.com" />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="service">I'm Interested In</label>
+        <select class="form-select" id="service">
+          <option value="" disabled selected>Select a service...</option>
+          <option>Web Design &amp; Development</option>
+          <option>Photography</option>
+          <option>Social Media Management</option>
+          <option>Full Package (Everything)</option>
+          <option>Not sure yet — let's talk</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="message">Tell Me About Your Business</label>
+        <textarea class="form-textarea" id="message" placeholder="What do you do, who are your customers, and what's missing online right now?"></textarea>
+      </div>
+      <button class="btn-primary" style="align-self:flex-start; cursor:pointer; border:none;" onclick="handleSubmit()">Send Message →</button>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-name">YourName — Creative Services</span>
+    <span class="footer-loc">Lake Wylie &amp; Clover, SC</span>
+    <ul class="footer-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+
+    reveals.forEach(el => observer.observe(el));
+
+    // Staggered service cards
+    document.querySelectorAll('.service-card').forEach((card, i) => {
+      card.style.transitionDelay = `${i * 0.1}s`;
+    });
+
+    // Form submit
+    function handleSubmit() {
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      if (!name || !email) {
+        alert('Please fill in your name and email.');
+        return;
+      }
+      const btn = document.querySelector('#contact button');
+      btn.textContent = 'Message Sent ✓';
+      btn.style.background = '#2a6e3a';
+      btn.style.color = '#f0e8d5';
+    }
+
+    // Smooth active nav highlight
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        if (window.scrollY >= section.offsetTop - 200) {
+          current = section.getAttribute('id');
+        }
+      });
+      navLinks.forEach(link => {
+        link.style.color = link.getAttribute('href') === `#${current}`
+          ? 'var(--gold)'
+          : '';
+      });
+    });
+  </script>
+
+</body>
+</html>
